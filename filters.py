@@ -2,12 +2,12 @@ import cv2
 import numpy as np
 import streamlit as st
 
-@st.cache
+@st.cache_resource
 def bw_filter(img):
     img_gray = cv2.cvtColor(img , cv2.COLOR_BGR2GRAY)
     return img_gray
 
-@st.cache
+@st.cache_resource
 def vignette(img, level=2):
     height, width = img.shape[:2]
 
@@ -27,7 +27,7 @@ def vignette(img, level=2):
 
     return img_vignette
 
-@st.cache
+@st.cache_resource
 def sepia(img):
         img_sepia = img.copy()
         # Converting to RGB as sepia matrix below is for RGB.
@@ -42,7 +42,7 @@ def sepia(img):
         img_sepia = cv2.cvtColor(img_sepia, cv2.COLOR_RGB2BGR)
         return img_sepia
 
-@st.cache
+@st.cache_resource
 def pencil_sketch(img, ksize=5):
     img_blur = cv2.GaussianBlur(img, (ksize, ksize), 0, 0)
     img_sketch, _ = cv2.pencilSketch(img_blur)
